@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <div>
+    <div className="bg-slate-600">
     
       <Link to="/">
         <li className="hidden sm:inline text-slate-700 hover:underline">
