@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    profilePicture:{
+        type: String,
+        default: "https://www.ellsworthmaine.gov/wp-content/uploads/2016/09/Natural-Pod-Blank-Photo-Person-300x300.jpg",
+    }
     
 }, { timestamps: true }); //is going to tells us when the user was crated
 
