@@ -22,7 +22,7 @@ const postingSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    category: {
+    cuisine: {
       type: String,
       required: false,
     },
