@@ -8,6 +8,8 @@ import Header from "./components/Header";
 import PrivateRoute from './components/PrivateRoute';
 import Profile from "./pages/Profile";
 import CreatePost from "./pages/CreatePost";
+import UpdatePost from "./pages/UpdatePost";
+import Post from "./pages/Post";
 
 
 export default function App() {
@@ -20,10 +22,12 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/post/:postingId" element={<Post />} />
         {/* PrivateRoute: only users who are logged in can view these pages */}
         <Route element={<PrivateRoute />}>  
           <Route path='/profile' element={<Profile />} />
           <Route path='/createpost' element={<CreatePost />} />
+          <Route path='/updatepost/:postingId' element={<UpdatePost />} />
       
         </Route>
       </Routes>

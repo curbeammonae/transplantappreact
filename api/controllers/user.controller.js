@@ -1,5 +1,6 @@
 import bcryptjs from 'bcryptjs'
 import User from '../models/user.model.js';
+import Post from '../models/post.model.js';
 
 
 export const test = (req, res)=> {
@@ -46,5 +47,19 @@ export const test = (req, res)=> {
       res.status(200).json('User has been deleted!');
     } catch (error) {
       next(error);
+    }
+  };
+
+  export const getUserPosts = async (req, res, next) => {
+    // req.user.id is from the cookie
+    if (req.user.id === req.params.id) {
+      try {
+        const postings = await Post.find({ userRef: req.params.id });
+        res.status(200).json(postings);
+      } catch (error) {
+        next(error);
+      }
+    } else {
+      return next(errorHandler(401, 'You can only view your own listings!'));
     }
   };

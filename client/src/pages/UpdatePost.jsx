@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   getDownloadURL,
   getStorage,
@@ -7,11 +7,13 @@ import {
 } from 'firebase/storage';
 import { app } from '../firebase';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function CreatePost() {
+
+export default function ost() {
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const params = useParams();
   const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
     imageUrls: [],
@@ -26,7 +28,22 @@ export default function CreatePost() {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  console.log(formData);
+  
+  useEffect(() => {
+    const fetchPost = async () => {
+        const postingId = params.postingId
+        const res = await fetch(`/api/post/get/${postingId}`);
+        const data = await res.json();
+        if(data.success === false){
+          console.log(data.message);
+          return
+
+        }
+        setFormData(data)
+    }
+    
+    fetchPost()
+  }, []);
   
   const handleImageSubmit = (e) => {
     //if the file length is more than 0 and the file lnegth is < 7
@@ -109,7 +126,8 @@ export default function CreatePost() {
         return setError('Discount price must be lower than regular price');
       setLoading(true);
       setError(false);
-      const res = await fetch('/api/post/create', {
+      const postingId = params.postingId
+      const res = await fetch(`/api/post/update/${postingId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -133,7 +151,7 @@ export default function CreatePost() {
   return (
     <main className='p-3 max-w-4xl mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>
-        Post A Recipe
+        Update A Recipe
       </h1>
       <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
         <div className='flex flex-col gap-4 flex-1'>

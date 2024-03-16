@@ -26,8 +26,8 @@ export default function Profile() {
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
-  const [showListingsError, setShowListingsError] = useState(false);
-  const [userListings, setUserListings] = useState([]);
+  const [showPostingError, setShowPostingError] = useState(false);
+  const [userPosting, setUserPosting] = useState([]);
   const dispatch = useDispatch();
 
   // firebase storage
@@ -128,23 +128,23 @@ export default function Profile() {
 
   const handleShowListings = async () => {
     try {
-      setShowListingsError(false);
-      const res = await fetch(`/api/user/listings/${currentUser._id}`);
+      setShowPostingError(false);
+      const res = await fetch(`/api/user/posts/${currentUser._id}`);
       const data = await res.json();
       if (data.success === false) {
-        setShowListingsError(true);
+        setShowPostingError(true);
         return;
       }
 
-      setUserListings(data);
+      setUserPosting(data);
     } catch (error) {
-      setShowListingsError(true);
+      setShowPostingError(true);
     }
   };
 
-  const handleListingDelete = async (listingId) => {
+  const handleListingDelete = async (postingId) => {
     try {
-      const res = await fetch(`/api/listing/delete/${listingId}`, {
+      const res = await fetch(`/api/post/delete/${postingId}`, {
         method: 'DELETE',
       });
       const data = await res.json();
@@ -153,8 +153,8 @@ export default function Profile() {
         return;
       }
 
-      setUserListings((prev) =>
-        prev.filter((listing) => listing._id !== listingId)
+      setUserPosting((prev) =>
+        prev.filter((posting) => posting._id !== postingId)
       );
     } catch (error) {
       console.log(error.message);
@@ -243,44 +243,44 @@ export default function Profile() {
         {updateSuccess ? 'User is updated successfully!' : ''}
       </p>
       <button onClick={handleShowListings} className='text-green-700 w-full'>
-        Show Listings
+        Show Recipes
       </button>
       <p className='text-red-700 mt-5'>
-        {showListingsError ? 'Error showing listings' : ''}
+        {showPostingError ? 'Error showing listings' : ''}
       </p>
 
-      {userListings && userListings.length > 0 && (
+      {userPosting && userPosting.length > 0 && (
         <div className='flex flex-col gap-4'>
           <h1 className='text-center mt-7 text-2xl font-semibold'>
-            Your Listings
+            Your Recipes
           </h1>
-          {userListings.map((listing) => (
+          {userPosting.map((posting) => (
             <div
-              key={listing._id}
+              key={posting._id}
               className='border rounded-lg p-3 flex justify-between items-center gap-4'
             >
-              <Link to={`/listing/${listing._id}`}>
+              <Link to={`/post/${posting._id}`}>
                 <img
-                  src={listing.imageUrls[0]}
+                  src={posting.imageUrls[0]}
                   alt='listing cover'
                   className='h-16 w-16 object-contain'
                 />
               </Link>
               <Link
                 className='text-slate-700 font-semibold  hover:underline truncate flex-1'
-                to={`/listing/${listing._id}`}
+                to={`/post/${posting._id}`}
               >
-                <p>{listing.name}</p>
+                <p>{posting.title}</p>
               </Link>
 
               <div className='flex flex-col item-center'>
                 <button
-                  onClick={() => handleListingDelete(listing._id)}
+                  onClick={() => handleListingDelete(posting._id)}
                   className='text-red-700 uppercase'
                 >
                   Delete
                 </button>
-                <Link to={`/update-listing/${listing._id}`}>
+                <Link to={`/updatepost/${posting._id}`}>
                   <button className='text-green-700 uppercase'>Edit</button>
                 </Link>
               </div>
