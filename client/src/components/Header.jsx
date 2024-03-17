@@ -8,7 +8,9 @@ export default function Header() {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const handleSubmit = (e) => {
+  // so we don't refresh page
     e.preventDefault();
+    // used to get the url from the search ( used the previous queries)
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set('searchTerm', searchTerm);
     const searchQuery = urlParams.toString();
