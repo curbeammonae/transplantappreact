@@ -59,6 +59,11 @@ export default function Header() {
               About
             </li>
           </Link>
+          <Link to='/explore'>
+            <li className='hidden sm:inline text-slate-700 hover:underline'>
+              Explore
+            </li>
+          </Link>
           {/* if user is signed in show their profile picture (currentUser.avatar) else show Sign in */}
           <Link to='/profile'>
             {currentUser ? (
