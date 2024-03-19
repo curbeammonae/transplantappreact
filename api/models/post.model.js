@@ -35,8 +35,8 @@ const postingSchema = new mongoose.Schema(
       required: true,
     },
     likes: {
-      type: Array,
-      default: [],
+      type: Boolean,
+      default: false,
     },
     numberOfLikes: {
       type: Number,

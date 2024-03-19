@@ -89,18 +89,18 @@ export const createPost = async (req, res, next) => {
   };
 
   export const likePost = async (req, res, next) => {
-    try{
-      const like = await Post.findById(req.params.likes);
-      if(!like){
-        return next(errorHandler(404))
-      }
-      const userIndex = like.likes.indexOf(req.user.id);
+    try {
+      const likeExist = await Post.findById(req.params.id)
+      const userIndex = likeExist.likes.indexOf(req.user.id)
       if(userIndex === -1){
-        like.likes.push(req.user.id);
+        likeExist.likes.push(req.user.id)
       }else{
-        like.likes.splice(userIndex,1)
+        likeExist.likes.splice(userIndex, 1)
       }
-    }catch(error){
+      await likeExist.save()
+      res.status(200).json(likeExist)
+    } catch (error) {
       next(error)
     }
+   
   }

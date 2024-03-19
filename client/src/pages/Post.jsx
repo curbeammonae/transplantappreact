@@ -7,15 +7,22 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css/bundle'
 import { FaShare, FaMapMarkerAlt} from 'react-icons/fa'
 import { useSelector } from 'react-redux';
+import { Button } from 'flowbite-react';
+import { useNavigate } from 'react-router-dom';
 
-export default function Post( {post} ) {
+
+export default function Post() {
+  const navigate = useNavigate()
   SwiperCore.use( [Navigation]);
   const params = useParams();
   const [posting, setPosting] = useState(null)
+  const[like, setLike] = useState('')
   const [loading, setLoading]  = useState(false)
   const [error, setError]  = useState(false)
   const [copied, setCopied] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
+  
+  
 
     useEffect(() => {
          
@@ -40,9 +47,26 @@ export default function Post( {post} ) {
         fetchPost();
       }, [params.postingId]);
   
-      const handleLike = () => {
+    
 
-      }
+      const handleLike = async () => {
+        const postingId = params.postingId
+
+        try {
+          if (!currentUser) {
+            navigate('/signin');
+            return;
+          }
+          const res = await fetch(`/api/post/likePost/${postingId}`, {
+            method: 'PUT',
+          });
+          
+          
+        } catch (error) {
+          console.log(error.message);
+        }
+        
+      };
     return (
       <main>
       {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
@@ -64,6 +88,8 @@ export default function Post( {post} ) {
               </SwiperSlide>
             ))}
           </Swiper>
+          <Button onClick={handleLike} color="dark">Dark</Button>
+
          
     
           <div className='flex flex-col max-w-4xl mx-auto p-3 my-7 gap-4'>
