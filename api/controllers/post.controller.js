@@ -1,4 +1,5 @@
 import Post from "../models/post.model.js";
+import { errorHandler } from "../utils/error.js";
 
 export const createPost = async (req, res, next) => {
     try {
@@ -86,3 +87,20 @@ export const createPost = async (req, res, next) => {
       next(error);
     }
   };
+
+  export const likePost = async (req, res, next) => {
+    try{
+      const like = await Post.findById(req.params.likes);
+      if(!like){
+        return next(errorHandler(404))
+      }
+      const userIndex = like.likes.indexOf(req.user.id);
+      if(userIndex === -1){
+        like.likes.push(req.user.id);
+      }else{
+        like.likes.splice(userIndex,1)
+      }
+    }catch(error){
+      next(error)
+    }
+  }

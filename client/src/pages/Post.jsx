@@ -8,7 +8,7 @@ import 'swiper/css/bundle'
 import { FaShare, FaMapMarkerAlt} from 'react-icons/fa'
 import { useSelector } from 'react-redux';
 
-export default function Post() {
+export default function Post( {post} ) {
   SwiperCore.use( [Navigation]);
   const params = useParams();
   const [posting, setPosting] = useState(null)
@@ -40,6 +40,9 @@ export default function Post() {
         fetchPost();
       }, [params.postingId]);
   
+      const handleLike = () => {
+
+      }
     return (
       <main>
       {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
@@ -64,6 +67,10 @@ export default function Post() {
          
     
           <div className='flex flex-col max-w-4xl mx-auto p-3 my-7 gap-4'>
+            <div>
+              {/* insert likes */}
+
+            </div>
             <p className='text-2xl font-semibold'>
               {posting.title} 
             </p>

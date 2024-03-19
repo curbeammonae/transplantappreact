@@ -11,6 +11,7 @@ import CreatePost from "./pages/CreatePost";
 import UpdatePost from "./pages/UpdatePost";
 import Post from "./pages/Post";
 import Search from "./pages/Search";
+import Explore from "./pages/Explore";
 
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/post/:postingId" element={<Post />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/explore" element={<Explore />} />
 
         {/* PrivateRoute: only users who are logged in can view these pages */}
         <Route element={<PrivateRoute />}>  
