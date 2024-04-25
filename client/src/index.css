@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html{
+background-color:#A5A58D;
+font-family: Almarai, sans-serif;
+}
