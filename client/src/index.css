@@ -2,7 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 html{
-background-color:#A5A58D;
-font-family: Almarai, sans-serif;
+background-color:#126F63;
+font-family: Ubuntu, sans-serif;
+}
+
+body{
+    width: 100%;
+    min-height: 100vh;
 }

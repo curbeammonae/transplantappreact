@@ -62,7 +62,7 @@ export default function Explore() {
   return (
     <div>
       
-      <div className=''>
+      <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7'>
       
         <div className='p-7 flex flex-wrap gap-4'>
           {!loading && posts.length === 0 && (
