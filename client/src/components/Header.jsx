@@ -26,7 +26,7 @@ export default function Header() {
   }, [location.search]);
   return (
     <header>
-      <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
+      <div className='max-[600px]:bg-sky-300   flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to='/'>
           <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
             <span className=' text-[#FEF2E6]'>Trans</span>
