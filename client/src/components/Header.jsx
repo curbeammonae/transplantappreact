@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
+
+
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState('');
@@ -25,12 +27,12 @@ export default function Header() {
     }
   }, [location.search]);
   return (
-    <header>
-      <div className='max-[600px]:bg-sky-300   flex justify-between items-center max-w-6xl mx-auto p-3'>
+    <header className=''>
+      <div className='   flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to='/'>
           <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
-            <span className=' text-[#FEF2E6]'>Trans</span>
-            <span className=' text-[#FEF2E6]'>PLANT</span>
+            <span className=' text-[#49a3f1]'>Trans</span>
+            <span className=' text-[#18a922]'>PLANT</span>
           </h1>
         </Link>
         <form
@@ -50,21 +52,32 @@ export default function Header() {
         </form>
         <ul className='flex gap-4'>
           <Link to='/'>
-            <li className='hidden sm:inline text-[#FEF2E6] hover:underline'>
+            <li className='hidden sm:inline text-[#49a3f1] hover:underline'>
               Home
             </li>
           </Link>
           <Link to='/about'>
-            <li className='hidden sm:inline text-[#FEF2E6] hover:underline'>
+            <li className='hidden sm:inline text-[#49a3f1] hover:underline'>
               About
             </li>
           </Link>
           <Link to='/explore'>
-            <li className='hidden sm:inline text-[#FEF2E6] hover:underline'>
+            <li className='hidden sm:inline text-[#49a3f1] hover:underline'>
               Explore
             </li>
           </Link>
           {/* if user is signed in show their profile picture (currentUser.avatar) else show Sign in */}
+          <Link to='/myrecipes'>
+            {currentUser ? (
+              <li className='hidden sm:inline text-[#49a3f1] hover:underline'>
+              My Recipes
+            </li>
+            ) : (
+              null
+            )}
+          </Link>
+          
+          
           <Link to='/profile'>
             {currentUser ? (
               <img
@@ -76,8 +89,12 @@ export default function Header() {
               <li className=' text-slate-900 hover:underline'> Sign In</li>
             )}
           </Link>
+          <li></li>
+          
         </ul>
+        
       </div>
+      
     </header>
   );
 }

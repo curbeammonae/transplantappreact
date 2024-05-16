@@ -12,6 +12,7 @@ import UpdatePost from "./pages/UpdatePost";
 import Post from "./pages/Post";
 import Search from "./pages/Search";
 import Explore from "./pages/Explore";
+import MyRecipes from "./pages/MyRecipes";
 
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
         {/* PrivateRoute: only users who are logged in can view these pages */}
         <Route element={<PrivateRoute />}>  
           <Route path='/profile' element={<Profile />} />
+          <Route path='/myrecipes' element={<MyRecipes />} />
           <Route path='/createpost' element={<CreatePost />} />
           <Route path='/updatepost/:postingId' element={<UpdatePost />} />
       

@@ -69,7 +69,8 @@ const {loading, error: errorMessage} = useSelector(state => state.user)
               />
             </div>
             <Button
-             
+
+              className="bg-[#D7816D]" 
               type="submit"
               disabled={loading}
             >

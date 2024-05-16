@@ -76,6 +76,7 @@ export default function SignUp() {
               
               type='submit'
               disabled={loading}
+              className='bg-[#D7816D]'
             >
               {loading ? (
                 <>

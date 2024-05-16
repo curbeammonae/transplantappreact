@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css';
 import {
   getDownloadURL,
   getStorage,
@@ -175,15 +177,20 @@ export default function CreatePost() {
             value={formData.ingredients}>
 
           </textarea>
-          <textarea 
-          type='text'
-          placeholder='instructions'
+          
+          <ReactQuill
+          theme='snow'
           id='instructions'
-            required
-            onChange={handleChange}
-            value={formData.instructions}>
+          placeholder='Tell Us How To Make Your Dish...'
+          className='h-72 mb-12'
+          required
+          onChange={(value) =>
+            setFormData({ ...formData, instructions: value })
+          }
 
-          </textarea>
+         
+         
+        />
         
          
         </div>
@@ -207,7 +214,7 @@ export default function CreatePost() {
               type='button'
               disabled={uploading}
               onClick={handleImageSubmit}
-              className='p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80'
+              className='p-3 text-black border border-gray-300 rounded uppercase hover:shadow-lg disabled:opacity-80'
             >
               {uploading ? 'Uploading...' : 'Upload'}
             </button>
@@ -239,7 +246,7 @@ export default function CreatePost() {
             disabled={loading || uploading}
             className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
           >
-            {loading ? 'Creating...' : 'Create listing'}
+            {loading ? 'Creating...' : 'Create Recipe'}
           </button>
           {error && <p className='text-red-700 text-sm'>{error}</p>}
         </div>
