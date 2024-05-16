@@ -28,7 +28,7 @@ export default function Header() {
   }, [location.search]);
   return (
     <header className=''>
-      <div className='   flex justify-between items-center max-w-6xl mx-auto p-3'>
+      <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to='/'>
           <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
             <span className=' text-[#49a3f1]'>Trans</span>
@@ -67,15 +67,7 @@ export default function Header() {
             </li>
           </Link>
           {/* if user is signed in show their profile picture (currentUser.avatar) else show Sign in */}
-          <Link to='/myrecipes'>
-            {currentUser ? (
-              <li className='hidden sm:inline text-[#49a3f1] hover:underline'>
-              My Recipes
-            </li>
-            ) : (
-              null
-            )}
-          </Link>
+          
           
           
           <Link to='/profile'>
