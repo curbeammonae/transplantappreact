@@ -8,9 +8,11 @@ Website: https://transplantappreact.onrender.com/
 
 # How It's Made:
 
- Client: React, React-Redux, TailwindCSS, Firebase
- Server: Node, Express, MongoDB
+## Client:
+Tech used: React, React-Redux, TailwindCSS, Firebase
 
+## Server:
+Tech used: Node, Express, MongoDB
 
 
 # Optimizations:
@@ -20,5 +22,5 @@ Currently working to provide "like" functionality so users can like their favori
 
 
 # Lessons Learned:
-This was my first time using Redux to store client-side state, across the application for user log-in functionality.
+This was my first time using React-redux to track user information across the application for user log in functionality.
 
